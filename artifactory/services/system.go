@@ -142,6 +142,24 @@ func (ss *SystemService) sendEmptyPost(endpoint string) error {
 	return nil
 }
 
+func (ss *SystemService) GetLicense() (*LicenseInfo, error) {
+	body, err := ss.sendGet("license")
+	if err != nil {
+		return nil, err
+	}
+	var info LicenseInfo
+	if err = json.Unmarshal(body, &info); err != nil {
+		return nil, errorutils.CheckErrorf("couldn't parse JFrog Artifactory license response: %s", err.Error())
+	}
+	return &info, nil
+}
+
+type LicenseInfo struct {
+	Type         string `json:"type"`
+	ValidThrough string `json:"validThrough,omitempty"`
+	LicensedTo   string `json:"licensedTo,omitempty"`
+}
+
 type artifactoryVersion struct {
 	Version string `json:"version,omitempty"`
 }

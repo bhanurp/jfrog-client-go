@@ -86,6 +86,7 @@ type ArtifactoryServicesManager interface {
 	GetRunningNodes() ([]string, error)
 	GetServiceId() (string, error)
 	GetConfigDescriptor() (string, error)
+	GetLicense() (*services.LicenseInfo, error)
 	ActivateKeyEncryption() error
 	DeactivateKeyEncryption() (bool, error)
 	PromoteDocker(params services.DockerPromoteParams) error
@@ -379,6 +380,10 @@ func (esm *EmptyArtifactoryServicesManager) GetVersion() (string, error) {
 }
 
 func (esm *EmptyArtifactoryServicesManager) GetRunningNodes() ([]string, error) {
+	panic("Failed: Method is not implemented")
+}
+
+func (esm *EmptyArtifactoryServicesManager) GetLicense() (*services.LicenseInfo, error) {
 	panic("Failed: Method is not implemented")
 }
 

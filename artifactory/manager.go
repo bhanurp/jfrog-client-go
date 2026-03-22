@@ -517,6 +517,11 @@ func (sm *ArtifactoryServicesManagerImp) GetVersion() (string, error) {
 	return systemService.GetVersion()
 }
 
+func (sm *ArtifactoryServicesManagerImp) GetLicense() (*services.LicenseInfo, error) {
+	systemService := services.NewSystemService(sm.config.GetServiceDetails(), sm.client)
+	return systemService.GetLicense()
+}
+
 func (sm *ArtifactoryServicesManagerImp) GetServiceId() (string, error) {
 	systemService := services.NewSystemService(sm.config.GetServiceDetails(), sm.client)
 	return systemService.GetServiceId()
